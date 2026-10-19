@@ -1,0 +1,60 @@
+// SPDX-License-Identifier: Apache-2.0
+pragma language_version >= 0.16;
+
+import CompactStandardLibrary;
+
+// Public rules and verification artifacts. Amounts and salts stay in witnesses.
+export sealed ledger minimumContribution: Uint<64>;
+export sealed ledger issuerSecretHash: Bytes<32>;
+export ledger contributionCommitments: Map<Bytes<32>, Bytes<32>>;
+export ledger claimedMemberTags: Map<Bytes<32>, Boolean>;
+
+witness issuerSecret(): Bytes<32>;
+witness memberSecret(): Bytes<32>;
+witness receiptSalt(): Bytes<32>;
+
+constructor(minimum: Uint<64>, issuerHash: Bytes<32>) {
+  minimumContribution = disclose(minimum);
+  issuerSecretHash = disclose(issuerHash);
+}
+
+// A DApp-specific tag links actions only inside this deployed circle.
+circuit deriveMemberTag(secret: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([
+    pad(32, "roundveil:member:"),
+    kernel.self().bytes,
+    secret
+  ]);
+}
+
+// The coordinator privately issues a contribution receipt after confirming
+// the payment off-chain. The ledger receives only a salted commitment.
+export circuit issueReceipt(memberTag: Bytes<32>, amount: Uint<64>): [] {
+  const issuer = issuerSecret();
+  assert(
+    persistentHash<Bytes<32>>(issuer) == issuerSecretHash,
+    "Coordinator authorization required"
+  );
+
+  const tag = disclose(memberTag);
+  assert(!contributionCommitments.member(tag), "Receipt already issued");
+  const salt = receiptSalt();
+  contributionCommitments.insert(tag, persistentCommit<Uint<64>>(amount, salt));
+}
+
+// A member proves the committed amount meets the public rule and can claim
+// only once. Neither the amount nor the salt is disclosed to the ledger.
+export circuit claimTurn(amount: Uint<64>): [] {
+  const tag = disclose(deriveMemberTag(memberSecret()));
+  const salt = receiptSalt();
+
+  assert(contributionCommitments.member(tag), "No contribution receipt");
+  assert(
+    contributionCommitments.lookup(tag) == persistentCommit<Uint<64>>(amount, salt),
+    "Amount does not match the private receipt"
+  );
+  assert(amount >= minimumContribution, "Contribution is below the circle rule");
+  assert(!claimedMemberTags.member(tag), "This member already claimed");
+
+  claimedMemberTags.insert(tag, true);
+}

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10184e" />
+    <meta name="description" content="Roundveil lets savings circle members prove contribution eligibility without making their amounts public." />
+    <title>Roundveil — private contribution proof</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Roundveil home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>round<span class="brand-light">veil</span></span>
+        </a>
+
+        <div class="circle-picker">
+          <div class="circle-avatar">M</div>
+          <div class="circle-copy"><strong>Makers Circle</strong><small>12 members · distributed</small></div>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </div>
+
+        <div class="nav-label">YOUR CIRCLE</div>
+        <nav class="nav-list">
+          <a class="nav-item active" href="#overview"><span class="nav-icon">◫</span>Overview</a>
+          <a class="nav-item" href="#proof"><span class="nav-icon">◈</span>My proof</a>
+          <a class="nav-item" href="#rules"><span class="nav-icon">≡</span>Circle rules</a>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+        <div class="privacy-note">
+          <span class="privacy-dot"></span>
+          <div><strong>Private by design</strong><small>Your amounts stay on your device.</small></div>
+        </div>
+        <button class="profile-button" type="button" aria-label="Demo member profile">
+          <span class="profile-avatar">A</span>
+          <span class="profile-copy"><strong>Maya Chen</strong><small>Member · since May</small></span>
+          <span class="more">···</span>
+        </button>
+      </aside>
+
+      <main id="top" class="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>YOUR CIRCLE</span><b>/</b> Overview</div>
+          <div class="topbar-right">
+            <span class="demo-indicator"><i></i> DEMO MODE</span>
+            <button class="icon-button" type="button" aria-label="Notifications">♧<span class="notification-dot"></span></button>
+          </div>
+        </header>
+
+        <section id="overview" class="welcome-row">
+          <div>
+            <p class="cycle-kicker"><span class="cycle-sun"></span> CYCLE 08 <span class="kicker-divider">/</span> OCTOBER 2026</p>
+            <h1>Good morning, Maya<span class="period">.</span></h1>
+            <p class="hero-copy">Your turn is coming up. Check that your contribution qualifies without sharing the amount with the circle.</p>
+          </div>
+          <div class="turn-card">
+            <div class="turn-label">YOUR PAYOUT TURN</div>
+            <div class="turn-date"><span class="date-icon">◷</span><strong>In 5 days</strong></div>
+            <div class="turn-detail">Sunday, 25 October <span class="turn-arrow">↗</span></div>
+          </div>
+        </section>
+
+        <section class="stats-row" aria-label="Circle summary">
+          <article class="stat-cell total-cell">
+            <div class="stat-heading">CIRCLE POT <span class="info-dot" title="Illustrative demo value">i</span></div>
+            <div class="stat-value">1,260,000 <span class="unit-label">units</span></div>
+            <div class="stat-caption"><span class="trend-up">↗ 12 members</span> · illustrative demo</div>
+          </article>
+          <article class="stat-cell">
+            <div class="stat-heading">THIS CYCLE’S RULE</div>
+            <div class="stat-value">15,000 <span class="unit-label">units</span></div>
+            <div class="stat-caption">Minimum contribution</div>
+          </article>
+          <article class="stat-cell progress-cell">
+            <div class="stat-heading">CIRCLE PROGRESS</div>
+            <div class="progress-head"><div class="stat-value">8<span class="muted-total"> / 12</span></div><span class="progress-percent">67%</span></div>
+            <div class="progress-track"><span></span></div>
+            <div class="stat-caption">Verified for this cycle</div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <div class="left-column">
+            <article id="proof" class="proof-card">
+              <div class="proof-topline">
+                <div class="proof-heading-wrap">
+                  <span class="proof-icon" aria-hidden="true">✳</span>
+                  <div><p class="eyebrow">YOUR PRIVATE CHECK</p><h2>Prove this cycle</h2></div>
+                </div>
+                <span class="local-badge"><i></i> STAYS ON DEVICE</span>
+              </div>
+              <p class="proof-intro">Show you met the circle’s rule. Your contribution amount and history are not published.</p>
+              <div class="amount-field-wrap">
+                <label for="contribution">Your contribution</label>
+                <div class="amount-field"><span class="amount-mark">#</span><input id="contribution" inputmode="numeric" autocomplete="off" value="15000" aria-describedby="amount-note"/><span class="field-suffix">UNITS</span></div>
+                <div class="field-note" id="amount-note">The rule is 15,000 units or more. This number stays in this browser.</div>
+              </div>
+              <div class="proof-rule"><span class="rule-check">✓</span><span>Meets the minimum for Cycle 08</span><span class="rule-value">≥ 15,000 units</span></div>
+              <button id="check-button" class="primary-button" type="button"><span>◈</span> Check eligibility privately <span class="button-arrow">↗</span></button>
+              <div id="result" class="result-panel" role="status" aria-live="polite" hidden></div>
+              <div class="proof-foot"><span class="lock-small">▣</span> Demo uses a salted commitment in this browser. No Midnight transaction is sent.</div>
+            </article>
+
+            <article class="activity-card">
+              <div class="section-heading">
+                <div><p class="eyebrow">CYCLE 08</p><h2>Circle activity</h2></div>
+                <button class="quiet-button" id="activity-toggle" type="button">See all <span>↗</span></button>
+              </div>
+              <div class="activity-list" id="activity-list">
+                <div class="activity-row"><span class="activity-avatar lavender">S</span><div class="activity-copy"><strong>Contribution verified</strong><small>Member tag · 6bd2…a84f</small></div><span class="activity-status"><i></i> Eligible</span><time>11:04</time></div>
+                <div class="activity-row"><span class="activity-avatar peach">K</span><div class="activity-copy"><strong>Contribution verified</strong><small>Member tag · 92a1…3c78</small></div><span class="activity-status"><i></i> Eligible</span><time>10:18</time></div>
+                <div class="activity-row"><span class="activity-avatar blue">T</span><div class="activity-copy"><strong>Contribution verified</strong><small>Member tag · 54ef…b901</small></div><span class="activity-status"><i></i> Eligible</span><time>Yesterday</time></div>
+                <div class="activity-row extra-activity" hidden><span class="activity-avatar mint">B</span><div class="activity-copy"><strong>Contribution verified</strong><small>Member tag · 2a60…1d03</small></div><span class="activity-status"><i></i> Eligible</span><time>Yesterday</time></div>
+              </div>
+              <div class="activity-caption">Sample activity. Member tags are pseudonymous within this circle.</div>
+            </article>
+          </div>
+
+          <aside class="right-column">
+            <article class="queue-card">
+              <div class="section-heading compact-heading"><div><p class="eyebrow">PAYOUT ORDER</p><h2>Coming up</h2></div><button class="more-button" type="button" aria-label="More payout options">···</button></div>
+              <div class="next-person"><div class="queue-avatar">J</div><div><strong>Jordan L.</strong><small>Next recipient</small></div><span class="next-tag">NEXT</span></div>
+              <div class="queue-line"><span class="queue-line-fill"></span></div>
+              <div class="queue-meta"><span>8 members verified</span><span>of 12</span></div>
+              <div class="queue-footer"><span class="calendar-icon">▦</span><span>Next payout</span><strong>25 Oct</strong></div>
+            </article>
+
+            <article id="rules" class="rule-card">
+              <div class="rule-card-head"><span class="rule-icon">⌁</span><div><p class="eyebrow">CIRCLE AGREEMENT</p><h2>Cycle 08 rules</h2></div></div>
+              <ul class="rule-list">
+                <li><span>Monthly contribution</span><strong>15,000 units min.</strong></li>
+                <li><span>Proof window</span><strong>By 24 Oct</strong></li>
+                <li><span>Claim per member</span><strong>One</strong></li>
+              </ul>
+              <button class="rules-link" type="button" id="privacy-details">What the ledger sees <span>↗</span></button>
+              <div class="ledger-detail" id="ledger-detail" hidden>
+                Public: circle rule, a blinded member tag, salted amount commitment, and claim status. Private on your device: contribution amount, salt, and member secret. Member tags remain linkable within a circle to stop repeat claims.
+              </div>
+            </article>
+
+            <div class="trust-note"><span class="trust-mark">◍</span><p><strong>Private amounts. Shared confidence.</strong><br/>Built for the savings circles people already trust.</p></div>
+          </aside>
+        </section>
+        <footer class="page-footer"><span>ROUNDVEIL · PROTOTYPE</span><span>Built for Midnight · Compact circuit included</span><button id="reset-demo" type="button">Reset demo</button></footer>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
