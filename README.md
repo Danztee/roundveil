@@ -72,7 +72,7 @@ Not implemented in this Wave 2 prototype: Midnight.js bindings, a Lace wallet co
 - [x] Compact source and generated circuits included; compiler 0.31.1 compiled both circuits.
 - [x] Setup and architecture README.
 - [x] Slide deck and a demo-video script included in the submission package.
-- [ ] Publish a public GitHub repository and add the `midnightntwrk` topic.
+- [x] Published the [public GitHub repository](https://github.com/Danztee/roundveil) with the `midnightntwrk` topic.
 - [ ] Record and upload the demo video.
 - [ ] Connect the app to the deployed contract before claiming end-to-end chain functionality.
 
