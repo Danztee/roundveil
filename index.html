@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#10184e" />
     <meta name="description" content="Roundveil lets savings circle members prove contribution eligibility without making their amounts public." />
     <title>Roundveil — private contribution proof</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -93,7 +94,7 @@
                   <span class="proof-icon" aria-hidden="true">✳</span>
                   <div><p class="eyebrow">YOUR PRIVATE CHECK</p><h2>Prove this cycle</h2></div>
                 </div>
-                <span class="local-badge"><i></i> STAYS ON DEVICE</span>
+                <span class="local-badge"><i></i> LOCAL COMPACT CIRCUIT</span>
               </div>
               <p class="proof-intro">Show you met the circle’s rule. Your contribution amount and history are not published.</p>
               <div class="amount-field-wrap">
@@ -104,7 +105,7 @@
               <div class="proof-rule"><span class="rule-check">✓</span><span>Meets the minimum for Cycle 08</span><span class="rule-value">≥ 15,000 units</span></div>
               <button id="check-button" class="primary-button" type="button"><span>◈</span> Check eligibility privately <span class="button-arrow">↗</span></button>
               <div id="result" class="result-panel" role="status" aria-live="polite" hidden></div>
-              <div class="proof-foot"><span class="lock-small">▣</span> Demo uses a salted commitment in this browser. No Midnight transaction is sent.</div>
+              <div class="proof-foot"><span class="lock-small">▣</span> Compiled Compact circuits run locally. No proof server or blockchain transaction is connected.</div>
             </article>
 
             <article class="activity-card">
@@ -147,7 +148,7 @@
             <div class="trust-note"><span class="trust-mark">◍</span><p><strong>Private amounts. Shared confidence.</strong><br/>Built for the savings circles people already trust.</p></div>
           </aside>
         </section>
-        <footer class="page-footer"><span>ROUNDVEIL · PROTOTYPE</span><span>Built for Midnight · Compact circuit included</span><button id="reset-demo" type="button">Reset demo</button></footer>
+        <footer class="page-footer"><span>ROUNDVEIL · LOCAL SIMULATION</span><span>Compiled Compact contract · no network connection</span><button id="reset-demo" type="button">Reset simulation</button></footer>
       </main>
     </div>
     <script type="module" src="/src/main.js"></script>

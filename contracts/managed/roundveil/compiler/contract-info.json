@@ -4,6 +4,17 @@
   "runtime-version": "0.16.0",
   "circuits": [
     {
+      "name": "registerMember",
+      "pure": false,
+      "proof": true,
+      "arguments": [
+      ],
+      "result-type": {
+        "type-name": "Bytes",
+        "length": 32
+      }
+    },
+    {
       "name": "issueReceipt",
       "pure": false,
       "proof": true,
@@ -102,8 +113,21 @@
       }
     },
     {
-      "name": "contributionCommitments",
+      "name": "registeredMemberTags",
       "index": 2,
+      "exported": true,
+      "storage": "Map",
+      "key": {
+        "type-name": "Bytes",
+        "length": 32
+      },
+      "value": {
+        "type-name": "Boolean"
+      }
+    },
+    {
+      "name": "contributionCommitments",
+      "index": 3,
       "exported": true,
       "storage": "Map",
       "key": {
@@ -117,7 +141,7 @@
     },
     {
       "name": "claimedMemberTags",
-      "index": 3,
+      "index": 4,
       "exported": true,
       "storage": "Map",
       "key": {

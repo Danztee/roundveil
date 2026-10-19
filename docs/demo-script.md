@@ -1,25 +1,14 @@
-# 50-second demo video script
+# Roundveil demo video
 
-**Screen:** Open the local Roundveil dashboard. Keep the `DEMO MODE` marker visible.
+The recorded walkthrough shows an accepted claim, the public/private data boundary, and a rejected claim. It describes the current local prototype accurately: compiled Compact circuits run in the browser, but no zero-knowledge proof or Midnight transaction is generated.
 
-**Narration:**
+## Narration
 
-> Roundveil is a private eligibility check for rotating savings circles. Today, a coordinator often has to expose contribution amounts or payment history just to confirm that someone can receive their turn.
+Meet Roundveil. Savings circles face a problem: confirming contributions can reveal private financial details. Roundveil keeps the amount with the member and uses compiled Compact circuits to verify a coordinator-issued receipt against the circle’s rule. At fifteen thousand units, the claim passes and the amount clears; only a salted commitment and pseudonymous tag appear. At fourteen thousand nine hundred ninety-nine, the circuit rejects the claim. Six runtime tests cover eligibility, tampering, repeat claims, and ledger contents. This prototype runs compiled Compact circuits locally. It does not yet generate a zero-knowledge proof or submit a Midnight transaction. Next: wallet, proof-server, and Preprod integration, then a real-circle pilot.
 
-**Screen:** Point to the circle rule, then the contribution field. Enter `15000` and click **Check eligibility privately**.
+## On-screen sequence
 
-**Narration:**
-
-> Here the circle rule is fifteen thousand units. The member checks against that rule in the browser. The amount clears from the field, and this demo stores only a salted commitment locally. The amount never goes to this dashboard's server.
-
-**Screen:** Show the success state and expand **What the ledger sees**.
-
-**Narration:**
-
-> The Compact contract is designed for the next step: a coordinator-issued commitment can be checked against the private amount, and a circle-specific tag prevents a second claim. The tag remains linkable inside that circle, so the demo calls that out.
-
-**Screen:** Show the footer and demo label.
-
-**Narration:**
-
-> This Wave 2 prototype does not yet connect a wallet, generate a live Midnight proof, or move money. It focuses on one useful privacy boundary for existing savings groups, with the contract and product path ready to extend.
+1. Show the circle rule and member contribution field.
+2. Submit `15000`; show the accepted claim, cleared amount, and salted commitment.
+3. Expand **What the ledger sees**.
+4. Reset and submit `14999`; show the Compact circuit reject the claim.

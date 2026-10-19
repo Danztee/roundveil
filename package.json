@@ -4,7 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.mjs",
-    "compile:compact": "compact compile +0.31.1 contracts/roundveil.compact contracts/managed/roundveil"
+    "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "build": "vite build",
+    "compile:compact": "compact compile +0.31.1 contracts/roundveil.compact contracts/managed/roundveil",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-runtime": "0.16.0"
+  },
+  "devDependencies": {
+    "vite": "8.3.4",
+    "vite-plugin-wasm": "^3.6.0"
   }
 }

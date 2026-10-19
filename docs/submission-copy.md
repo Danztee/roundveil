@@ -6,8 +6,8 @@ Roundveil explores private eligibility checks for coordinator-led rotating savin
 
 ## Wave 2 progress
 
-Built a responsive product demo, an Apache-2.0 Compact contract, and compiled proving and verification artifacts for the `issueReceipt` and `claimTurn` circuits with Compact 0.31.1. Added a privacy model, setup and evaluation instructions, pitch deck, and recording script.
+Built a responsive product prototype, an Apache-2.0 Compact contract, and compiled artifacts for `registerMember`, `issueReceipt`, and `claimTurn` with Compact 0.31.1. Added an in-browser Compact Runtime simulation, six passing runtime tests, a privacy model, setup and evaluation instructions, a pitch deck, and a recorded demo video.
 
 ## Current status
 
-The browser preview checks the threshold and creates a salted SHA-256 commitment locally. It does not generate a Midnight proof, connect a wallet, send a transaction, or move funds. The Compact contract is compiled but not deployed. Coordinator confirmation of the real-world payment remains an explicit trust assumption.
+The browser runs the compiled `registerMember`, `issueReceipt`, and `claimTurn` Compact circuits through Compact Runtime, with separate member and coordinator private state. It demonstrates eligible and rejected claims without contacting a server. It does not generate a Midnight proof, connect a wallet, send a transaction, or move funds. Coordinator confirmation of the real-world payment remains an explicit trust assumption.

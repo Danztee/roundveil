@@ -6,6 +6,7 @@ import CompactStandardLibrary;
 // Public rules and verification artifacts. Amounts and salts stay in witnesses.
 export sealed ledger minimumContribution: Uint<64>;
 export sealed ledger issuerSecretHash: Bytes<32>;
+export ledger registeredMemberTags: Map<Bytes<32>, Boolean>;
 export ledger contributionCommitments: Map<Bytes<32>, Bytes<32>>;
 export ledger claimedMemberTags: Map<Bytes<32>, Boolean>;
 
@@ -27,6 +28,15 @@ circuit deriveMemberTag(secret: Bytes<32>): Bytes<32> {
   ]);
 }
 
+// A member registers a circle-specific pseudonym. The DApp can show the tag,
+// but the secret used to derive it remains a private witness.
+export circuit registerMember(): Bytes<32> {
+  const tag = disclose(deriveMemberTag(memberSecret()));
+  assert(!registeredMemberTags.member(tag), "Member already registered");
+  registeredMemberTags.insert(tag, true);
+  return tag;
+}
+
 // The coordinator privately issues a contribution receipt after confirming
 // the payment off-chain. The ledger receives only a salted commitment.
 export circuit issueReceipt(memberTag: Bytes<32>, amount: Uint<64>): [] {
@@ -37,6 +47,7 @@ export circuit issueReceipt(memberTag: Bytes<32>, amount: Uint<64>): [] {
   );
 
   const tag = disclose(memberTag);
+  assert(registeredMemberTags.member(tag), "Member is not registered");
   assert(!contributionCommitments.member(tag), "Receipt already issued");
   const salt = receiptSalt();
   contributionCommitments.insert(tag, persistentCommit<Uint<64>>(amount, salt));
@@ -48,6 +59,7 @@ export circuit claimTurn(amount: Uint<64>): [] {
   const tag = disclose(deriveMemberTag(memberSecret()));
   const salt = receiptSalt();
 
+  assert(registeredMemberTags.member(tag), "Member is not registered");
   assert(contributionCommitments.member(tag), "No contribution receipt");
   assert(
     contributionCommitments.lookup(tag) == persistentCommit<Uint<64>>(amount, salt),

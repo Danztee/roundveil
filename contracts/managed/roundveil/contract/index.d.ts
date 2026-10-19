@@ -7,6 +7,7 @@ export type Witnesses<PS> = {
 }
 
 export type ImpureCircuits<PS> = {
+  registerMember(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, Uint8Array>;
   issueReceipt(context: __compactRuntime.CircuitContext<PS>,
                memberTag_0: Uint8Array,
                amount_0: bigint): __compactRuntime.CircuitResults<PS, []>;
@@ -14,6 +15,7 @@ export type ImpureCircuits<PS> = {
 }
 
 export type ProvableCircuits<PS> = {
+  registerMember(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, Uint8Array>;
   issueReceipt(context: __compactRuntime.CircuitContext<PS>,
                memberTag_0: Uint8Array,
                amount_0: bigint): __compactRuntime.CircuitResults<PS, []>;
@@ -24,6 +26,7 @@ export type PureCircuits = {
 }
 
 export type Circuits<PS> = {
+  registerMember(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, Uint8Array>;
   issueReceipt(context: __compactRuntime.CircuitContext<PS>,
                memberTag_0: Uint8Array,
                amount_0: bigint): __compactRuntime.CircuitResults<PS, []>;
@@ -33,6 +36,13 @@ export type Circuits<PS> = {
 export type Ledger = {
   readonly minimumContribution: bigint;
   readonly issuerSecretHash: Uint8Array;
+  registeredMemberTags: {
+    isEmpty(): boolean;
+    size(): bigint;
+    member(key_0: Uint8Array): boolean;
+    lookup(key_0: Uint8Array): boolean;
+    [Symbol.iterator](): Iterator<[Uint8Array, boolean]>
+  };
   contributionCommitments: {
     isEmpty(): boolean;
     size(): bigint;
